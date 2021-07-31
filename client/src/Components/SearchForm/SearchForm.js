@@ -5,11 +5,12 @@ import './SearchForm.css';
 
 export default function SearchForm(props) {
   const [book, setBook] = useState('');
-  const [sort, setSort] = useState('')
+  const [sortedBooks, setSortedBooks] = useState('');
+  console.log(props.results);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if(!book) return
+    if (!book) return;
     props.setIsLoading(true);
     Api.getBooks(book).then((data) => {
       props.setResults(data.items);
@@ -17,12 +18,26 @@ export default function SearchForm(props) {
     });
   }
 
-  function handleSort (e) {
-    setSort(e.target.value)
+  function handleSort(e) {
+    e.preventDefault();
+    setSortedBooks(e.target.value);
+    console.log(sortedBooks);
+    const sortBooks = props.results.sort((a, b) => {
+      console.log(b.volumeInfo.publishedDate);
+      if (sortedBooks === 'Newest') {
+        return (
+          parseInt(b.volumeInfo.publishedDate?.substring(0, 4)) -
+          parseInt(a.volumeInfo.publishedDate?.substring(0, 4))
+        );
+      } else if (sortedBooks === 'Oldest') {
+        return (
+          parseInt(a.volumeInfo.publishedDate?.substring(0, 4)) -
+          parseInt(b.volumeInfo.publishedDate?.substring(0, 4))
+        );
+      }
+    });
+    props.setResults(sortBooks);
   }
-
-  
-
   return (
     <div>
       <form onSubmit={handleSubmit} className="container-form">
@@ -36,7 +51,8 @@ export default function SearchForm(props) {
         <button type="submit" className="form-button">
           <i className="icon" className="fa fa-search" aria-hidden="true"></i>
         </button>
-        <select defaultValue="Sort" onChange={handleSort}>
+        <select onChange={handleSort}>
+          <option defaultValue="Sort">Sort</option>
           <option value="Newest">Newest</option>
           <option value="Oldest">Oldest</option>
         </select>

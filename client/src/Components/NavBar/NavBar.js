@@ -16,9 +16,7 @@ export default function NavBar() {
           <a>My List</a>
         </Link>
       </ul>
-      <div className="burger">
-
-      </div>
+      <div className="burger"></div>
     </nav>
   );
 }
