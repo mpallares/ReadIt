@@ -5,19 +5,32 @@ import BooksList from '../BooksList/BooksList';
 import Spinner from '../Spinner/Spinner';
 
 export default function DashboardPage() {
-  const { results, setResults } = useContext(AppContext);
+  const { unSortedResults, setResults } = useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
+
+  // const dislikeBookFromDb = () => {
+  //   fetch('localhost:300/books/dislike', {
+  //     method: 'PUT'
+  //   })
+  // }
+  // const likeBookFromDb = (book) => {
+  //   fetch('localhost:300/books', {
+  //     method: 'POST',
+  //     body: book
+  //   })
+  // }
+
+  
 
   return (
     <div>
       <SearchForm
         isLoading={isLoading}
         setIsLoading={setIsLoading}
-        list={results}
+        list={unSortedResults}
         setResults={setResults}
-        results={results}
       />
-      {isLoading ? <Spinner /> : <BooksList list={results} />}
+      {isLoading ? <Spinner /> : <BooksList list={unSortedResults} />}
     </div>
   );
 }

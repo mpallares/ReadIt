@@ -1,7 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState } from 'react';
 import './FilterBar.css';
-import { AppContext } from '../Dashboard/Dashboard';
-import SingleBook from '../SingleBook/SingleBook';
 export default function FilterBar(props) {
   const [searchedTerm, setSearchedTerm] = useState('');
 

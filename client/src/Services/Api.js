@@ -1,6 +1,5 @@
 const Api = {}
 
-const apiKey = 'AIzaSyA0gU50EaNeXjQlcVhUFssff2IrlDw29Hw'
 
 Api.getBooks = (book) => {
    return fetch(

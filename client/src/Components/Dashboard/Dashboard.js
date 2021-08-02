@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import MyListPage from '../MyListPage/MyListPage';
 import NavBar from '../NavBar/NavBar';
@@ -7,14 +7,50 @@ import DashboardPage from '../DashboardPage/DashboardPage';
 
 export const AppContext = React.createContext(null);
 
+// SERVER
+// DB table Books
+// GET /books/liked    POST /books/myList    PUT books/myList
+
+// CLIENT
+// save a book on AddToList click
+// dislike a book on DeleteToList click
+// Update myList page to fetch from server
+// Update search page to
+
 export default function Dashboard() {
-  const [results, setResults] = useState([]);
+  const [unSortedResults, setResults] = useState([]);
+  const [sortOrder, setSortOrder] = useState('');
   const [myList, setMyList] = useState([]);
-  
+
+  console.log(unSortedResults);
+
+  const results = [...unSortedResults].sort((a, b) => {
+    if (sortOrder === 'Oldest') {
+      return (
+        parseInt(b.volumeInfo.publishedDate?.substring(0, 4)) -
+        parseInt(a.volumeInfo.publishedDate?.substring(0, 4))
+      );
+    } else if (sortOrder === 'Newest') {
+      return (
+        parseInt(a.volumeInfo.publishedDate?.substring(0, 4)) -
+        parseInt(b.volumeInfo.publishedDate?.substring(0, 4))
+      );
+    }
+  });
 
   return (
     <Router>
-      <AppContext.Provider value={{ results, setResults, myList, setMyList}}>
+      <AppContext.Provider
+        value={{
+          unSortedResults,
+          setResults,
+          myList,
+          setMyList,
+          sortOrder,
+          setSortOrder,
+          results,
+        }}
+      >
         <div className="main-container">
           <NavBar />
           <Switch>
