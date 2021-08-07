@@ -1,12 +1,15 @@
-const { DataTypes} = require('sequelize');
-const sequelize = require ('../index')
+module.exports = (sequelize, DataTypes) => {
+  const Book = sequelize.define('Book', {
+    title: DataTypes.STRING,
+    description: DataTypes.TEXT,
+    image: DataTypes.STRING,
+    id: {
+      type: DataTypes.STRING,
+      primaryKey: true
+    },
+    author: DataTypes.STRING,
+    publishedDate: DataTypes.STRING
+  });
+  return Book
+}
 
-const Book = sequelize.define('book', {
-  title: DataTypes.STRING,
-  description: DataTypes.TEXT,
-  id: DataTypes.STRING,
-  liked: DataTypes.BOOLEAN,
-  publishedDate: DataTypes.STRING
-});
-
-module.exports = Book;

@@ -6,6 +6,8 @@
   margin-bottom: 30px;
   border-radius: 9px;
   box-shadow: 0 0 8px rgba(17, 17, 17, 0.116);
+  background-color: rgba(41, 24, 24, 0.952);
+  color: white;
   top:0;
   transition:.2s;
   position: relative;

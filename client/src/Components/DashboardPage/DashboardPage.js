@@ -8,20 +8,6 @@ export default function DashboardPage() {
   const { unSortedResults, setResults } = useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
 
-  // const dislikeBookFromDb = () => {
-  //   fetch('localhost:300/books/dislike', {
-  //     method: 'PUT'
-  //   })
-  // }
-  // const likeBookFromDb = (book) => {
-  //   fetch('localhost:300/books', {
-  //     method: 'POST',
-  //     body: book
-  //   })
-  // }
-
-  
-
   return (
     <div>
       <SearchForm

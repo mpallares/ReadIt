@@ -8,6 +8,7 @@ export default function MyListPage() {
   const {myList, setMyList} = useContext(AppContext)
   const [filteredResults, setFilteredResults] = useState ([])
 
+  console.log(myList)
 
   return (
     <div>

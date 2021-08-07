@@ -1,6 +1,8 @@
 .main-container {
   /* background-image: url('../../pictures/bookwallpaper.jpeg'); */
-  height: 100vh;
-  background-color: f6f5f5
-  
+  height: 100%;
+  background-image: url('../../pictures//bookwallpaper.jpeg');
+  /* z-index: -1; */
+  background-repeat: repeat;
+  overflow: auto;
 }
